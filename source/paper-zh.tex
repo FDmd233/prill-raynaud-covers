@@ -1,0 +1,341 @@
+\documentclass[UTF8,10pt,a4paper]{ctexart}
+
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Termes}
+\usepackage{amsmath,amsthm}
+\usepackage[final]{microtype}
+\usepackage{unicode-math}
+\setmathfont{TeX Gyre Termes Math}
+\usepackage{amscd}
+\usepackage{xcolor}
+\usepackage[a4paper,left=30mm,right=30mm,top=27mm,bottom=27mm]{geometry}
+\usepackage{hyperref}
+
+\hypersetup{
+  unicode=true,
+  colorlinks=true,
+  linkcolor=blue!45!black,
+  citecolor=blue!45!black,
+  urlcolor=blue!45!black,
+  pdftitle={由 Raynaud 丛构造的 Prill 例外有限平展覆盖},
+  pdfsubject={代数曲线的有限平展覆盖与 Raynaud 丛},
+  pdfkeywords={Prill 问题, 有限平展覆盖, Raynaud 丛, 有限单值群},
+  pdfauthor={FDmd-233}
+}
+
+\ctexset{
+  section={
+    number=\arabic{section},
+    format=\large\bfseries\centering,
+    beforeskip=1.6ex plus .4ex,
+    afterskip=1.2ex plus .2ex
+  }
+}
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{proposition}[theorem]{命题}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{注}
+\renewcommand{\proofname}{证明}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\tens}{\otimes}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\Spec}{Spec}
+
+\title{由 Raynaud 丛构造的 Prill 例外有限平展覆盖}
+\author{FDmd-233}
+\date{2026 年 7 月 10 日}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+设 $C$ 是亏格 $g\geq2$ 的光滑射影连通复曲线。本文证明，存在连通有限平展
+Galois 覆盖 $f\colon X\to C$，使得
+\[
+  h^0\!\left(X,\OO_X\bigl(f^{-1}(p)\bigr)\right)\geq2
+\]
+对每个 $p\in C$ 都成立。令 $V=R_g\tens M$ 为秩 $g^g$ 的 Raynaud 丛的一个
+行列式归一化扭曲。该向量丛满足 $\deg V=0$、$\det V\cong\OO_C$ 与
+$H^0(C,V)=0$，但对所有 $p\in C$ 都有 $H^0(C,V(p))\neq0$。我们证明 $V$
+的单值群有限，并选取一个对所有点仍保持上述非消失性质的不可约直和项 $W$。
+由 $W$ 的单值表示得到 Galois 覆盖后，对应向量丛 $f_*\OO_X$ 以 $\OO_C$ 与
+$W$ 为直和项，从而给出所需的不等式。
+
+\medskip
+\noindent\textbf{关键词：}Prill 问题；有限平展覆盖；Raynaud 丛；有限单值群
+
+\noindent\textbf{2020 Mathematics Subject Classification：}
+14H30（主）；14H60，14H40（次）
+\end{abstract}
+
+\section{引言}
+
+设 $f\colon X\to C$ 是光滑射影连通复曲线之间的有限态射。Prill 提出如下问题：
+纤维除子 $f^{-1}(p)$ 能否在一个铅笔线性系中移动？等价地，是否可能对一般点
+$p\in C$ 有
+\[
+  h^0\!\left(X,\OO_X\bigl(f^{-1}(p)\bigr)\right)>1
+\]
+该问题见 \cite[Chapter~VI, Exercise~D]{ACGH}；对亏格至少为三的曲线，
+它也被列为 \cite[Problem~14]{LittProblem14}。Biswas--Butler 与 Mohan Kumar
+分别得到了一些部分肯定结果 \cite{BiswasButler,MohanKumar}。Landesman 与
+Litt 随后证明：对每条亏格二曲线，都存在次数为 $36$ 的连通有限平展覆盖，
+并且上述不等式对每个 $p\in C$ 成立 \cite{LandesmanLitt}。
+
+若一个有限覆盖 $f$ 对所有 $p\in C$ 都满足该不等式，我们称它为
+\emph{Prill 例外覆盖}。下面的构造适用于每个 $g\geq2$。
+
+\begin{theorem}\label{thm:main-zh}
+设 $C$ 是亏格 $g\geq2$ 的光滑射影连通复曲线。则存在连通有限平展 Galois
+覆盖 $f\colon X\to C$，使得
+\[
+  h^0\!\left(X,\OO_X\bigl(f^{-1}(p)\bigr)\right)\geq2
+\]
+对每个 $p\in C$ 都成立。
+\end{theorem}
+
+当 $g\geq3$ 时，定理~\ref{thm:main-zh} 对
+\cite[Problem~14]{LittProblem14} 给出了肯定回答。对有限平坦态射，函数
+\[
+  p\longmapsto h^0\!\left(X,\OO_X\bigl(f^{-1}(p)\bigr)\right)
+\]
+上半连续，因此其值至少为二的点构成闭集。如果这个闭集包含 $C$ 的一个稠密
+开集，它就等于 $C$。所以“一般纤维”表述与逐点表述等价；下文采用后者，
+因为构造直接给出这一形式。
+
+证明使用 Raynaud 构造的两个性质。限制丛 $R_g$ 对每个
+$\alpha\in\Pic^0(C)$ 都满足 $H^0(C,R_g\tens\alpha)\neq0$；另一方面，
+Jacobian 上的向量丛 $E_g$ 经 $[g]\colon J\to J$ 拉回后成为同一个线丛若干份的直和。我们选取
+一个行列式平凡且保持逐点非消失性质的扭曲。在相应的 $C$ 的平展拉回上，重复
+出现的线丛是挠线丛，因而扭曲后的向量丛具有有限线性单值群。
+
+\section{Raynaud 丛}
+
+记 $J=\Jac(C)=\Pic^0(C)$。在 $J$ 上固定一个 theta 除子 $\Theta$，并选取
+Abel--Jacobi 嵌入 $i\colon C\hookrightarrow J$。下述 Raynaud 构造的形式见
+\cite[Section~3]{Raynaud} 与 \cite[Section~2.3]{Beauville}。
+
+\begin{theorem}[Raynaud]\label{thm:raynaud-zh}
+对每个整数 $n\geq1$，$J$ 上存在向量丛 $E_n$，满足
+\begin{equation}\label{eq:raynaud-pullback-zh}
+  [n]^*E_n
+  \cong H^0\!\left(J,\OO_J(n\Theta)\right)^*\tens_{\CC}\OO_J(n\Theta).
+\end{equation}
+其限制 $R_n=i^*E_n$ 半稳定，秩为 $n^g$，斜率为 $g/n$，并且
+\begin{equation}\label{eq:raynaud-nonvanishing-zh}
+  H^0(C,R_n\tens\alpha)\neq0
+  \qquad\text{对每个 }\alpha\in\Pic^0(C).
+\end{equation}
+\end{theorem}
+
+取 $n=g$，并记
+\[
+  R:=R_g,
+  \qquad
+  r:=\rk(R)=g^g.
+\]
+于是 $R$ 是斜率为一的半稳定向量丛，故 $\deg(R)=r$。
+
+\section{行列式归一化扭曲}
+
+\begin{lemma}\label{lem:twist-zh}
+存在 $M\in\Pic^{-1}(C)$，同时满足
+\begin{equation}\label{eq:choice-M-zh}
+  M^{\tens r}\cong(\det R)^{-1}
+  \qquad\text{和}\qquad
+  H^0(C,R\tens M)=0.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+映射
+\[
+  \Pic^{-1}(C)\longrightarrow\Pic^{-r}(C),
+  \qquad
+  M\longmapsto M^{\tens r}
+\]
+是 $J$ 上 $r$ 倍同源映射的一个平移。因此，纤维
+\[
+  T:=\left\{M\in\Pic^{-1}(C)\mid
+  M^{\tens r}\cong(\det R)^{-1}\right\}
+\]
+恰有 $r^{2g}$ 个元素。
+
+若 $H^0(C,R\tens M)\neq0$，称 $M\in\Pic^{-1}(C)$ 为\emph{坏的}。
+任取一个非零截面，可得非零态射 $M^{-1}\to R$。设 $L\subset R$ 是其像的
+饱和化，则存在有效除子 $D$ 使 $L\cong M^{-1}(D)$。由于
+$\deg(M^{-1})=1$，且 $R$ 是斜率为一的半稳定向量丛，
+\[
+  1+\deg D=\deg L\leq1.
+\]
+所以 $D=0$，而 $M^{-1}$ 是 $R$ 的次数一线子丛。
+
+固定一个 Jordan--H\"older 滤过
+$0=R_0\subset R_1\subset\cdots\subset R_m=R$。给定次数一线子丛
+$L\subset R$，取满足 $L\subset R_k$ 的最小 $k$。诱导态射
+$L\to R_k/R_{k-1}$ 非零。其源与目标都是斜率一的稳定向量丛，故该态射为
+同构。因此，每个坏的 $M$ 都使 $M^{-1}$ 同构于 $R$ 的某个秩一
+Jordan--H\"older 因子。该滤过至多有 $r$ 个因子，所以坏的 $M$ 至多有 $r$
+个同构类。
+
+由 $g\geq2$ 与 $r=g^g>1$ 可知 $r^{2g}>r$。因此，$T$ 中至少有一个
+$M$ 不是坏的。
+\end{proof}
+
+固定引理~\ref{lem:twist-zh} 中的 $M$，并令 $V:=R\tens M$。于是
+\begin{equation}\label{eq:V-properties-zh}
+  \deg V=0,
+  \qquad
+  \det V\cong\OO_C,
+  \qquad
+  H^0(C,V)=0.
+\end{equation}
+对每个 $p\in C$，线丛 $M(p)$ 的次数为零，故由
+\eqref{eq:raynaud-nonvanishing-zh} 得
+\begin{equation}\label{eq:V-pointwise-zh}
+  H^0(C,V(p))=H^0(C,R\tens M(p))\neq0.
+\end{equation}
+
+\section{有限单值群}
+
+\begin{proposition}\label{prop:finite-monodromy-zh}
+存在 $C$ 的连通有限平展覆盖，使 $V$ 在其上平凡化。
+\end{proposition}
+
+\begin{proof}
+作笛卡尔方块
+\[
+\begin{CD}
+  \widetilde C @>{\widetilde i}>> J\\
+  @V{q}VV                         @VV{[g]}V\\
+  C              @>{i}>>          J.
+\end{CD}
+\]
+态射 $q$ 有限、平展且满射。由 \eqref{eq:raynaud-pullback-zh}，
+\[
+  q^*V
+  \cong
+  H^0\!\left(J,\OO_J(g\Theta)\right)^*
+  \tens_{\CC}
+  \bigl(\widetilde i^*\OO_J(g\Theta)\tens q^*M\bigr).
+\]
+
+取 $\widetilde C$ 的一个连通分支 $\widetilde C_0$。它在 $q$ 下的像非空且
+既开又闭，所以等于 $C$。记
+\[
+  N:=\left.
+  \bigl(\widetilde i^*\OO_J(g\Theta)\tens q^*M\bigr)
+  \right|_{\widetilde C_0}.
+\]
+因为 $h^0(J,\OO_J(g\Theta))=g^g=r$，$q^*V$ 在 $\widetilde C_0$ 上的限制
+为 $N^{\oplus r}$。取行列式，并利用 $\det V\cong\OO_C$，得到
+\[
+  N^{\tens r}\cong\OO_{\widetilde C_0}.
+\]
+
+设 $d$ 是 $N$ 的阶，则 $d\mid r$。选取同构
+$N^{\tens d}\cong\OO_{\widetilde C_0}$，
+它定义有限平展的 $\mu_d$-torsor（主齐性空间）
+\[
+  \Spec_{\widetilde C_0}
+  \left(\bigoplus_{a=0}^{d-1}N^{-a}\right)
+  \longrightarrow\widetilde C_0.
+\]
+$N$ 在这个 torsor 上的拉回是平凡线丛。其任一连通分支都满射到
+$\widetilde C_0$；再与 $\widetilde C_0\to C$ 复合，得到连通有限平展覆盖
+$h\colon C'\to C$，且 $h^*V$ 平凡。
+\end{proof}
+
+取一个支配 $h$ 的连通有限平展 Galois 覆盖后，可以把 $V$ 看成有限群的一个
+复表示所对应的向量丛。
+
+\begin{proposition}\label{prop:irreducible-summand-zh}
+存在 $C$ 上非平凡、不可约且具有有限单值群的向量丛 $W$，使得
+\[
+  H^0(C,W(p))\neq0
+  \qquad\text{对每个 }p\in C.
+\]
+\end{proposition}
+
+\begin{proof}
+选取使 $V$ 平凡化的连通有限平展 Galois 覆盖 $u\colon Y\to C$，其 Galois
+群记为 $H$。固定平凡化 $u^*V\cong\OO_Y^{\oplus r}$。由于 $Y$ 连通且射影，
+$H^0(Y,\OO_Y)=\CC$；所以下降矩阵均为常数，并定义表示
+$H\to\operatorname{GL}_r(\CC)$。由 Maschke 定理，
+\[
+  V\cong\bigoplus_{j=1}^{s}W_j^{\oplus m_j},
+\]
+各 $W_j$ 都是单值群有限的不可约向量丛，且两两不同构。若其中有平凡丛，
+则 $V$ 含有平凡直和项，与 \eqref{eq:V-properties-zh} 矛盾。
+
+对 $1\leq j\leq s$，令
+\[
+  Z_j:=\{p\in C\mid H^0(C,W_j(p))\neq0\}.
+\]
+设 $p_1,p_2\colon C\times C\to C$ 为两个投影，$\Delta\subset C\times C$
+为对角线。向量丛
+$p_1^*W_j\tens\OO_{C\times C}(\Delta)$ 在 $C\times\{p\}$ 上的限制就是
+$W_j(p)$。对射影态射 $p_2$ 使用上半连续性，得到每个 $Z_j$ 都是闭集。
+由 $V$ 的分解与 \eqref{eq:V-pointwise-zh}，
+$C=\bigcup_{j=1}^{s}Z_j$。不可约簇不能写成有限个真闭子集之并，所以某个
+$Z_j$ 等于 $C$。
+\end{proof}
+
+\section{覆盖的构造}
+
+下文使用的向量丛判别准则是 \cite[Lemma~5.4]{LandesmanLittPW} 的平展情形；
+为完整起见，这里写出证明。
+
+\begin{proof}[定理~\ref{thm:main-zh} 的证明]
+取命题~\ref{prop:irreducible-summand-zh} 中的 $W$，并设
+\[
+  \rho\colon\pi_1(C,c)\longrightarrow\operatorname{GL}(W_c)
+\]
+为其单值表示。像 $G$ 是有限群。子群 $\ker\rho$ 给出连通有限平展 Galois
+覆盖 $f\colon X\to C$，其 Galois 群为 $G$。
+
+向量丛 $f_*\OO_X$ 对应于正则 $G$-模 $\CC[G]$。每个 $G$ 的不可约复表示都在
+$\CC[G]$ 中出现，重数等于其维数。因此，$\OO_C$ 与 $W$ 是 $f_*\OO_X$ 的
+两个不同直和项。
+
+对 $p\in C$，纤维除子是 $p$ 的拉回，故
+\[
+  \OO_X\bigl(f^{-1}(p)\bigr)\cong f^*\OO_C(p).
+\]
+由投影公式及 $\OO_C,W\subset f_*\OO_X$，
+\begin{align*}
+  H^0\!\left(X,\OO_X\bigl(f^{-1}(p)\bigr)\right)
+  &\cong H^0\!\left(C,f_*\OO_X\tens\OO_C(p)\right)\\
+  &\supset H^0(C,\OO_C(p))\oplus H^0(C,W(p)).
+\end{align*}
+因为 $p$ 有效，$h^0(C,\OO_C(p))\geq1$；由
+命题~\ref{prop:irreducible-summand-zh}，$h^0(C,W(p))\geq1$。所以左端空间对
+每个 $p\in C$ 的维数都至少为二。
+\end{proof}
+
+\begin{remark}
+这个构造不给出有用的覆盖次数上界。起始的 Raynaud 丛秩已为 $g^g$，随后还要
+取 Kummer 覆盖与 Galois 闭包。亏格二时，\cite{LandesmanLitt} 中次数 $36$
+的覆盖次数小得多。
+\end{remark}
+
+\begin{remark}
+行列式条件不可缺少。公式 \eqref{eq:raynaud-pullback-zh} 只说明 $R_g$ 的拉回
+是同一个线丛若干份的直和。行列式平凡使该线丛成为挠线丛，因而扭曲后的向量
+丛的线性单值群有限，而不仅是射影单值群有限。
+\end{remark}
+
+\begingroup
+\footnotesize
+\bibliographystyle{amsplain}
+\bibliography{source/references}
+\endgroup
+
+\end{document}

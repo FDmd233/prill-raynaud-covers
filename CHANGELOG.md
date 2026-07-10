@@ -1,28 +1,26 @@
-# Revision log
+# Revision history
 
-## 10 July 2026 - reconstructed final manuscript
+## v1.0.1 - 10 July 2026
 
-- Reconstructed a complete editable LaTeX/BibTeX source from the supplied PDF
-  while preserving the original PDF separately.
-- Corrected the Raynaud pullback formula to include the dual vector space
-  `H^0(J, O_J(nTheta))^*`, matching the cited construction.
-- Expanded the determinant-normalising lemma at its load-bearing step: the
-  saturated line subbundle is located in a fixed Jordan-Hölder filtration, and
-  the stable equal-slope morphism is made explicit.
-- Made the finite-monodromy argument fully explicit, including the connected
-  component of the isogeny pullback, the torsion line bundle, and its Kummer
-  étale trivialisation.
-- Clarified the descent representation, the closed non-vanishing loci, and the
-  regular-representation argument used in the final covering construction.
-- Tightened the abstract and introduction, removed repetitive or formulaic
-  prose, and standardized notation and terminology.
-- Added MSC 2020 classifications, keywords, PDF metadata, DOI-backed
-  bibliography entries, and reproducible build tooling.
-- Re-typeset the note in a neutral AMS journal style and visually checked every
-  page of the four-page output.
-- Added a separately reproducible blind-review PDF whose visible and embedded
-  author fields are empty.
+- Reworked the prose in the paper and repository notes without changing the
+  theorem or its proof.
+- Rebuilt the author and anonymous PDFs from the same source.
+- Added a complete Chinese edition.
+- Renamed the proof note to `NOTES_ON_PROOF.md` and shortened the release text.
 
-No theorem statement was weakened or strengthened relative to the supplied
-manuscript. The public author name `FDmd-233` was supplied for this release;
-no funding statement, affiliation, or license was invented.
+## v1.0.0 - 10 July 2026
+
+- Recreated the LaTeX and BibTeX source from the supplied PDF.  The v1.0.0 tag
+  retains that input file.
+- Restored the dual vector space in the Raynaud pullback formula:
+  `H^0(J, O_J(nTheta))^*`.
+- Added the Jordan–Hölder count used in Lemma 3.1.
+- Spelled out the isogeny pullback, the Kummer trivialisation, the descent
+  representation, and the final regular-representation argument.
+- Revised the abstract and introduction and made the notation consistent.
+- Added the MSC classification, keywords, PDF metadata, DOI links, and build
+  script.
+- Switched to an AMS article layout and added an anonymous build.
+
+The theorem statement is unchanged.  The author version is credited to
+`FDmd-233`; no affiliation, funding information, or license is included.

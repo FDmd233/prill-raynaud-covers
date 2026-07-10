@@ -33,27 +33,29 @@ try {
     $env:LC_CTYPE = 'C'
     $env:LANG = 'C'
 
-    # Fix the build time to 10 July 2026 00:00:00 UTC. Publication priority is
-    # established by the external deposit, not by mutable PDF metadata.
+    # Use the manuscript date so repeated builds have stable PDF metadata.
     $env:SOURCE_DATE_EPOCH = '1783641600'
     $env:FORCE_SOURCE_DATE = '1'
 
     if ($Clean) {
         Invoke-Latexmk @('-C', '-r', '.\latexmkrc', '.\source\paper.tex') | Out-Null
         Invoke-Latexmk @('-C', '-r', '.\latexmkrc', '.\source\paper-anonymous.tex') | Out-Null
+        Invoke-Latexmk @('-C', '-r', '.\latexmk-zh.rc', '.\source\paper-zh.tex') | Out-Null
     }
 
     Invoke-Latexmk @('-r', '.\latexmkrc', '.\source\paper.tex')
     Invoke-Latexmk @('-r', '.\latexmkrc', '.\source\paper-anonymous.tex')
+    Invoke-Latexmk @('-r', '.\latexmk-zh.rc', '.\source\paper-zh.tex')
 
     New-Item -ItemType Directory -Force '.\output\pdf' | Out-Null
     Copy-Item '.\build\paper.pdf' '.\output\pdf\Prill_Raynaud_Final.pdf' -Force
     Copy-Item '.\build\paper-anonymous.pdf' '.\output\pdf\Prill_Raynaud_Anonymous.pdf' -Force
+    Copy-Item '.\build\paper-zh.pdf' '.\output\pdf\Prill_Raynaud_Chinese.pdf' -Force
 
     $files = @(
-        'original/Prill_Raynaud_English_NoAuthor_CHECKED.pdf',
         'output/pdf/Prill_Raynaud_Final.pdf',
-        'output/pdf/Prill_Raynaud_Anonymous.pdf'
+        'output/pdf/Prill_Raynaud_Anonymous.pdf',
+        'output/pdf/Prill_Raynaud_Chinese.pdf'
     )
     $lines = foreach ($file in $files) {
         $hash = (Get-FileHash -Algorithm SHA256 -LiteralPath $file).Hash.ToLowerInvariant()

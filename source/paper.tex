@@ -58,12 +58,13 @@ $f\colon X\to C$ such that
   h^0\!\left(X,\OO_X\bigl(f^{-1}(p)\bigr)\right)\geq 2
 \]
 for every $p\in C$.
-Starting with the rank-$g^g$ Raynaud bundle of slope one, we choose a
-determinant-normalising twist that has no global sections but still acquires
-a section after twisting by any point of $C$.  The resulting degree-zero
-bundle has finite monodromy.  One of its irreducible monodromy summands has
-the same pointwise non-vanishing property, and the regular representation of
-its monodromy group then gives the required cover.
+Let $V=R_g\tens M$ be a determinant-normalised twist of the rank-$g^g$
+Raynaud bundle.  Then $\deg V=0$, $\det V\cong\OO_C$, and $H^0(C,V)=0$,
+whereas $H^0(C,V(p))\neq0$ for every $p\in C$.  We prove that $V$ has finite
+monodromy and choose an irreducible summand $W$ with
+$H^0(C,W(p))\neq0$ for all $p$.  For the Galois cover defined by the
+monodromy of $W$, the associated bundle $f_*\OO_X$ contains $\OO_C$ and $W$
+as direct summands, which yields the claimed inequality.
 \end{abstract}
 
 \maketitle
@@ -79,14 +80,13 @@ a pencil; equivalently, whether
 for a general point $p\in C$.  The question appears in
 \cite[Chapter~VI, Exercise~D]{ACGH} and, for curves of genus at least three,
 is recorded as \cite[Problem~14]{LittProblem14}.  Partial affirmative results
-for Prill's original expectation were obtained in
-\cite{BiswasButler,MohanKumar}.  Landesman and Litt then constructed a
-connected finite \'{e}tale cover of degree $36$ with this property over every
-curve of genus two \cite{LandesmanLitt}.
+were obtained in \cite{BiswasButler,MohanKumar}.  Landesman and Litt
+subsequently constructed, for every curve of genus two, a connected finite
+\'{e}tale cover of degree $36$ satisfying the inequality for every $p\in C$
+\cite{LandesmanLitt}.
 
-We call a finite cover \emph{Prill-exceptional} if the inequality holds at
-every point.  Our result gives a uniform construction in every genus at least
-two.
+We call $f$ \emph{Prill-exceptional} when the inequality holds for every
+$p\in C$.  The construction below works for every $g\geq2$.
 
 \begin{theorem}\label{thm:main}
 Let $C$ be a smooth projective connected complex curve of genus $g\geq 2$.
@@ -103,24 +103,24 @@ the function
 \[
   p\longmapsto h^0\!\left(X,\OO_X\bigl(f^{-1}(p)\bigr)\right)
 \]
-is upper semicontinuous.  Hence the locus on which this dimension is at least
-two is closed; if it contains a dense open subset, it is all of $C$.  Thus the
-pointwise formulation above is equivalent to the usual general-fibre
-formulation, while being the form naturally produced by the construction.
+is upper semicontinuous.  The locus where this dimension is at least two is
+therefore closed.  If it contains a dense open subset of $C$, it equals $C$.
+Thus the general-fibre and pointwise formulations are equivalent.  We use the
+latter because the construction yields it directly.
 
-The proof uses two properties of Raynaud's bundles.  First, the relevant
-Raynaud bundle has a section after tensoring by any degree-zero line bundle.
-Second, its pullback under an isogeny of the Jacobian is a direct sum of
-copies of one line bundle.  A carefully chosen twist makes the determinant
-trivial.  On a suitable \'{e}tale pullback of $C$, the repeated line bundle is
-then torsion, which upgrades projectively finite monodromy to finite linear
-monodromy.
+The proof uses two properties of Raynaud's construction.  The restricted
+bundle $R_g$ satisfies $H^0(C,R_g\tens\alpha)\neq0$ for every
+$\alpha\in\Pic^0(C)$, whereas the ambient bundle $E_g$ becomes a direct sum
+of copies of one line bundle after pullback by $[g]\colon J\to J$.  We choose
+a twist with trivial determinant while preserving the pointwise
+nonvanishing.  On the induced \'{e}tale pullback of $C$, the repeated line
+bundle is torsion, so the twisted bundle has finite linear monodromy.
 
 \section{The Raynaud bundle}
 
 Write $J=\Jac(C)=\Pic^0(C)$, fix a theta divisor $\Theta$ on $J$, and choose
-an Abel--Jacobi embedding $i\colon C\hookrightarrow J$.  We use the following
-standard form of Raynaud's construction; see \cite[Section~3]{Raynaud} and
+an Abel--Jacobi embedding $i\colon C\hookrightarrow J$.  The form of Raynaud's
+construction needed here is recorded in \cite[Section~3]{Raynaud} and
 \cite[Section~2.3]{Beauville}.
 
 \begin{theorem}[Raynaud]\label{thm:raynaud}
@@ -147,8 +147,6 @@ Then $R$ is semistable of slope one, so $\deg(R)=r$.
 
 \section{A determinant-normalised twist}
 
-The following counting argument produces the twist needed later.
-
 \begin{lemma}\label{lem:twist}
 There is a line bundle $M\in\Pic^{-1}(C)$ such that
 \begin{equation}\label{eq:choice-M}
@@ -172,8 +170,8 @@ the fibre
 \]
 has cardinality $r^{2g}$.
 
-Call $M\in\Pic^{-1}(C)$ \emph{bad} if $H^0(C,R\tens M)\neq 0$.  A nonzero
-section gives a nonzero morphism $M^{-1}\to R$.  If $L\subset R$ is the
+Call $M\in\Pic^{-1}(C)$ \emph{bad} if $H^0(C,R\tens M)\neq 0$.  Such a
+section induces a nonzero morphism $M^{-1}\to R$.  If $L\subset R$ is the
 saturation of its image, then $L\cong M^{-1}(D)$ for an effective divisor
 $D$.  Since $\deg(M^{-1})=1$ and $R$ is semistable of slope one,
 \[
@@ -182,13 +180,12 @@ $D$.  Since $\deg(M^{-1})=1$ and $R$ is semistable of slope one,
 Thus $D=0$, and $M^{-1}$ is a degree-one line subbundle of $R$.
 
 Fix a Jordan--H\"older filtration
-$0=R_0\subset R_1\subset\cdots\subset R_m=R$.  If $L\subset R$ is a
-degree-one line subbundle, let $k$ be minimal with $L\subset R_k$.  The
-composite $L\to R_k/R_{k-1}$ is nonzero.  Both bundles are stable of slope
-one, so this morphism is an isomorphism.  Hence $L$ is isomorphic to a
-rank-one Jordan--H\"older factor of $R$.  There are at most $r$ such factors,
-counted with multiplicity, and therefore at most $r$ isomorphism classes of
-bad $M$.
+$0=R_0\subset R_1\subset\cdots\subset R_m=R$.  Given a degree-one line
+subbundle $L\subset R$, let $k$ be minimal with $L\subset R_k$.  The induced
+map $L\to R_k/R_{k-1}$ is nonzero.  Since its source and target are stable of
+slope one, it is an isomorphism.  Thus every bad $M$ makes $M^{-1}$
+isomorphic to a rank-one Jordan--H\"older factor of $R$.  The filtration has
+at most $r$ factors, so at most $r$ isomorphism classes of $M$ are bad.
 
 Because $g\geq 2$ and $r=g^g>1$, one has $r^{2g}>r$.  The set $T$ therefore
 contains an $M$ that is not bad.
@@ -248,23 +245,23 @@ $\det V\cong\OO_C$ yields
   N^{\tens r}\cong\OO_{\widetilde C_0}.
 \]
 
-Let $d$ be the order of $N$ and choose an isomorphism
-$N^{\tens d}\cong\OO_{\widetilde C_0}$.  The resulting Kummer cover
+Let $d$ be the order of $N$; then $d\mid r$.  A chosen isomorphism
+$N^{\tens d}\cong\OO_{\widetilde C_0}$ defines the finite \'{e}tale
+$\mu_d$-torsor
 \[
   \Spec_{\widetilde C_0}
   \left(\bigoplus_{a=0}^{d-1}N^{-a}\right)
-  \longrightarrow \widetilde C_0
+  \longrightarrow \widetilde C_0 .
 \]
-is a finite \'{e}tale $\mu_d$-torsor, and the pullback of $N$ to it is
-trivial.  Each connected component maps surjectively to
-$\widetilde C_0$.  Composing one such component with
-$\widetilde C_0\to C$ gives a connected finite \'{e}tale morphism
-$h\colon C'\to C$ for which $h^*V$ is trivial.
+The pullback of $N$ to this torsor is
+trivial.  Any connected component maps surjectively to $\widetilde C_0$; its
+composite with $\widetilde C_0\to C$ is a connected finite \'{e}tale cover
+$h\colon C'\to C$ that trivialises $V$.
 \end{proof}
 
-After replacing this cover by a connected Galois closure, $V$ is the vector
-bundle associated with a finite-dimensional complex representation of a
-finite group.
+Passing to a connected finite \'{e}tale Galois cover dominating $h$, we may
+regard $V$ as the bundle associated with a complex representation of a finite
+group.
 
 \begin{proposition}\label{prop:irreducible-summand}
 There is a nontrivial irreducible finite-monodromy vector bundle $W$ on $C$
@@ -277,33 +274,35 @@ such that
 
 \begin{proof}
 Choose a connected finite \'{e}tale Galois cover $u\colon Y\to C$ trivialising
-$V$, and write $H$ for its Galois group.  Relative to a trivialisation
-$u^*V\cong\OO_Y^{\oplus r}$, the descent datum is given by matrices whose
-entries lie in $H^0(Y,\OO_Y)=\CC$.  It is therefore a representation of $H$.
-Maschke's theorem gives a decomposition
+$V$, and write $H$ for its Galois group.  Fix a trivialisation
+$u^*V\cong\OO_Y^{\oplus r}$.  Since $Y$ is connected and projective,
+$H^0(Y,\OO_Y)=\CC$; hence the descent matrices are constant and define a
+representation $H\to\operatorname{GL}_r(\CC)$.  Maschke's theorem gives a
+decomposition
 \[
   V\cong\bigoplus_{j=1}^{s}W_j^{\oplus m_j},
 \]
 where the $W_j$ are pairwise nonisomorphic irreducible finite-monodromy
-bundles.  None is trivial, since a trivial summand would contradict
+bundles.  No $W_j$ is trivial, because a trivial summand would contradict
 $H^0(C,V)=0$ in \eqref{eq:V-properties}.
 
 For $1\leq j\leq s$, set
 \[
-  Z_j:=\{p\in C:H^0(C,W_j(p))\neq 0\}.
+  Z_j:=\{p\in C\mid H^0(C,W_j(p))\neq 0\}.
 \]
 Let $p_1,p_2\colon C\times C\to C$ be the projections and let
 $\Delta\subset C\times C$ be the diagonal.  The restriction of
-\[
-  p_1^*W_j\tens\OO_{C\times C}(\Delta)
-\]
-to $C\times\{p\}$ is $W_j(p)$.  Properness of $p_2$ and upper
-semicontinuity therefore show that $Z_j$ is closed.  Equation
-\eqref{eq:V-pointwise} implies $C=\bigcup_{j=1}^{s}Z_j$.  Since $C$ is
-irreducible and the union is finite, one of the $Z_j$ equals $C$.
+$p_1^*W_j\tens\OO_{C\times C}(\Delta)$ to $C\times\{p\}$ is $W_j(p)$.
+Upper semicontinuity for the proper morphism $p_2$ shows that each $Z_j$ is
+closed.  The decomposition of $V$ and \eqref{eq:V-pointwise} give
+$C=\bigcup_{j=1}^{s}Z_j$.  An irreducible variety cannot be a finite union of
+proper closed subsets, so $Z_j=C$ for some $j$.
 \end{proof}
 
 \section{The covering}
+
+The vector-bundle criterion used below is the \'{e}tale case of
+\cite[Lemma~5.4]{LandesmanLittPW}; we include the argument for completeness.
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
 Let $W$ be as in Proposition~\ref{prop:irreducible-summand}, and let
@@ -314,39 +313,39 @@ be its monodromy representation.  Its image $G$ is finite.  The subgroup
 $\ker\rho$ determines a connected finite \'{e}tale Galois cover
 $f\colon X\to C$ with Galois group $G$.
 
-The vector bundle $f_*\OO_X$ is associated with the regular representation
-$\CC[G]$.  Every irreducible complex representation of $G$ occurs in
-$\CC[G]$, with multiplicity equal to its dimension.  In particular,
-$\OO_C$ and $W$ occur as distinct direct summands of $f_*\OO_X$.
+The bundle $f_*\OO_X$ corresponds to the regular $G$-module $\CC[G]$, which
+contains every irreducible complex representation of $G$ with multiplicity
+equal to its dimension.  Hence $\OO_C$ and $W$ are distinct direct summands
+of $f_*\OO_X$.
 
 For $p\in C$, the fibre divisor is the pullback of $p$, so
 \[
   \OO_X\bigl(f^{-1}(p)\bigr)\cong f^*\OO_C(p).
 \]
-The projection formula and the preceding direct-sum decomposition give
+The projection formula and the summands $\OO_C,W\subset f_*\OO_X$ give
 \begin{align*}
   H^0\!\left(X,\OO_X\bigl(f^{-1}(p)\bigr)\right)
   &\cong H^0\!\left(C,f_*\OO_X\tens\OO_C(p)\right)\\
   &\supset H^0(C,\OO_C(p))\oplus H^0(C,W(p)).
 \end{align*}
-The first summand is nonzero because $p$ is effective; the second is nonzero
-by Proposition~\ref{prop:irreducible-summand}.  Hence the left-hand side has
-dimension at least two for every $p\in C$.
+Since $p$ is effective, $h^0(C,\OO_C(p))\geq1$; Proposition~\ref{prop:irreducible-summand}
+gives $h^0(C,W(p))\geq1$.  Thus the left-hand side has dimension at least two
+for every $p\in C$.
 \end{proof}
 
 \begin{remark}
-The construction is not degree-effective.  The first bundle already has
-rank $g^g$, and the proof subsequently passes to an \'{e}tale Kummer cover and
-a Galois closure.  The degree-$36$ construction of \cite{LandesmanLitt} in
-genus two is therefore much sharper numerically.
+The construction gives no useful degree bound.  The initial Raynaud bundle
+has rank $g^g$, and the proof subsequently takes a Kummer cover and a Galois
+closure.  In genus two, the degree-$36$ cover of \cite{LandesmanLitt} is
+numerically far more efficient.
 \end{remark}
 
 \begin{remark}
-The determinant-normalising step is essential.  Formula
-\eqref{eq:raynaud-pullback} only makes the pullback of $R_g$ a direct sum of
-copies of a line bundle.  Trivial determinant forces that line bundle to be
-torsion, thereby converting projectively finite monodromy into finite linear
-monodromy.
+The determinant condition is essential.  Formula
+\eqref{eq:raynaud-pullback} shows only that the pullback of $R_g$ is a direct
+sum of copies of one line bundle.  Triviality of the determinant makes that
+line bundle torsion.  Consequently, the twisted bundle has finite linear,
+rather than merely finite projective, monodromy.
 \end{remark}
 
 \bibliographystyle{amsplain}
