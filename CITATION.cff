@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this preprint, please cite it using the metadata below."
+title: "Prill-Exceptional Étale Covers from Raynaud Bundles"
+type: article
+authors:
+  - family-names: "FDmd-233"
+version: "1.0.0"
+date-released: 2026-07-10
+repository-code: "https://github.com/FDmd233/prill-raynaud-covers"
+url: "https://github.com/FDmd233/prill-raynaud-covers/releases/tag/v1.0.0-preprint"
+keywords:
+  - "Prill's problem"
+  - "finite étale covers"
+  - "Raynaud bundles"
+  - "finite monodromy"

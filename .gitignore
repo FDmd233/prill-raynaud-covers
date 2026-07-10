@@ -1,0 +1,12 @@
+/build/
+/tmp/
+/Prill_Raynaud_English_NoAuthor_CHECKED.pdf
+/PUBLICATION_CHECKLIST.md
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
