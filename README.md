@@ -52,6 +52,4 @@ the Kummer-cover argument, and the use of the regular representation.  The
 references and cross-references resolve, and all three PDFs were inspected for
 layout problems.  The paper uses no datasets or computer calculations.
 
-The GitHub release records this version.  An arXiv or DOI-backed deposit is
-preferable for long-term scholarly archiving.  No reuse license is currently
-provided.
+The GitHub release records this version. 
