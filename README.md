@@ -12,6 +12,6 @@ A four-page preprint on Prill's problem for smooth projective complex curves. It
 - [First archived version: annotated tag v1.0.0-preprint](https://github.com/FDmd233/prill-raynaud-covers/tree/v1.0.0-preprint), dated 10 July 2026.
 - [Current release: v1.0.1-preprint](https://github.com/FDmd233/prill-raynaud-covers/releases/tag/v1.0.1-preprint), published on 10 July 2026.
 
-The annotated tags, tagged source snapshots, checksums, and GitHub release assets provide a reproducible publication record.
+The original annotated Git tags, tagged source snapshots, checksums, current GitHub release timestamp and assets, and complete commit history are retained as the publication record. The repository history has not been rewritten.
 
 Citation metadata is available in [`CITATION.cff`](CITATION.cff).
