@@ -1,0 +1,49 @@
+name: Refresh release assets
+
+on:
+  push:
+    paths:
+      - '.github/workflows/refresh-release-assets.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refresh v1.0.1-preprint
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > /tmp/release-notes.md <<'EOF'
+          A preprint constructing, for every smooth projective complex curve of genus at least two, a connected finite etale Galois cover whose every fibre divisor moves in a pencil. The proof combines Raynaud bundles, a determinant-normalised twist, finite monodromy, and the regular representation.
+
+          AI-assisted tools were used during manuscript preparation.
+          EOF
+          gh release edit v1.0.1-preprint --notes-file /tmp/release-notes.md
+          gh release upload v1.0.1-preprint output/pdf/Prill_Raynaud.pdf --clobber
+          gh release upload v1.0.1-preprint output/pdf/Prill_Raynaud_Chinese.pdf --clobber
+      - name: Verify release asset digests
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for pair in \
+            'Prill_Raynaud.pdf output/pdf/Prill_Raynaud.pdf' \
+            'Prill_Raynaud_Chinese.pdf output/pdf/Prill_Raynaud_Chinese.pdf'; do
+            set -- $pair
+            NAME=$1
+            FILE=$2
+            LOCAL=$(sha256sum "$FILE" | awk '{print $1}')
+            REMOTE=$(gh api repos/${GITHUB_REPOSITORY}/releases/tags/v1.0.1-preprint --jq ".assets[] | select(.name==\"$NAME\") | .digest" | sed 's/^sha256://')
+            test "$LOCAL" = "$REMOTE"
+          done
+      - name: Remove temporary workflow
+        run: |
+          rm -f .github/workflows/refresh-release-assets.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Remove temporary release refresh workflow'
+          git push
