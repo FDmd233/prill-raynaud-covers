@@ -16,6 +16,10 @@ The annotated tags, tagged source snapshots, release assets, checksums, timestam
 
 Citation metadata is available in [`CITATION.cff`](CITATION.cff).
 
+## Independent proof verification
+
+- [Four-page English manuscript: point-by-point proof audit](verification/PRILL_RAYNAUD_PROOF_AUDIT.md). The audit verifies the logical chain from the cited Raynaud/Mukai vector-bundle results to the claimed connected Galois cover; it records the external assumptions and the missing TeX-source limitation explicitly. This is a mathematical audit, not journal peer review.
+
 ## AI assistance
 
 OpenAI GPT-5.6 Sol was used during parts of the drafting and checking process.
