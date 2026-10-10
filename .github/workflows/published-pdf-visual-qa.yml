@@ -1,0 +1,36 @@
+name: Retain published PDF for independent visual QA
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/published-pdf-visual-qa.yml'
+      - 'output/pdf/Prill_Raynaud.pdf'
+      - 'output/pdf/Prill_Raynaud_Chinese.pdf'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preserve-current-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout published files
+        uses: actions/checkout@v4
+      - name: Verify PDF files are present
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s 'output/pdf/Prill_Raynaud.pdf'
+          sha256sum 'output/pdf/Prill_Raynaud.pdf'
+          test -s 'output/pdf/Prill_Raynaud_Chinese.pdf'
+          sha256sum 'output/pdf/Prill_Raynaud_Chinese.pdf'
+      - name: Retain exact published PDF bytes
+        uses: actions/upload-artifact@v4
+        with:
+          name: prill-raynaud-pdf-${{ github.sha }}
+          path: |
+            output/pdf/Prill_Raynaud.pdf
+            output/pdf/Prill_Raynaud_Chinese.pdf
+          if-no-files-found: error
+          retention-days: 14
