@@ -2,7 +2,7 @@
 
 Date: 2026-10-10. This checks the actual four-page English PDF
 \`output/pdf/Prill_Raynaud.pdf\`, not an inferred LaTeX source.
-The PDF has 213,975 bytes. The public repository does not contain
+The PDF has 213,975 bytes. We compared a separately archived copy against the live GitHub manuscript using Git's object-hash algorithm and confirmed **byte-identical content**, with Git blob SHA-1 `9a0c33ab1314c171cae672b8d476ac60f2205873` and SHA-256 `68248fe0182a880b16df4f1e20feae6103342ff3fd40d5c279ffe74b8fb7a865`. The public repository does not contain
 its original LaTeX source. The original PDF, mathematical conclusions,
 and author attribution are left unchanged.
 
